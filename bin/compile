@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+# bin/compile <build-dir> <cache-dir>
+
+# fail fast
+set -e
+
+# clean up leaking environment
+unset GIT_DIR
+
+# parse args
+BUILD_DIR=$1
+CACHE_DIR=$2
+
+function indent() {
+  c='s/^/       /'
+  case $(uname) in
+    Darwin) sed -l "$c";;
+    *)      sed -u "$c";;
+  esac
+}
+
+source $BUILD_DIR/_utorrent.cfg
+
+LP_DIR=`cd $(dirname $0); cd ..; pwd`
+
+cd $BUILD_DIR
+echo -n "-----> Downloading µTorrent..."
+curl --silent --location https://download.utorrent.com/linux/utorrent-server-3.0-ubuntu-10.10-27079.tar.gz | tar xz
+mv utorrent-server-v3_0 utorrent-server
+echo "       done."
+
+if [[ $BUILDPACK_URL ]]; then
+  echo "-----> Initiating Requested Buildpack... "
+  REQ_BUILDPACK_DIR=$(mktemp -d -t rbd.XXXXXX)
+  git clone --quiet $ADDITIONAL_BUILDPACK_URL $REQ_BUILDPACK_DIR
+  mv -f $REQ_BUILDPACK_DIR/vendor/* $LP_DIR/vendor
+  mv $REQ_BUILDPACK_DIR/bin/compile $LP_DIR/bin/compile_buildpack
+  $LP_DIR/bin/compile_buildpack $BUILD_DIR $CACHE_DIR | indent
+  echo "       done."
+  rm -fr $REQ_BUILDPACK_DIR
+fi
