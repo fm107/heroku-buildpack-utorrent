@@ -30,7 +30,7 @@ mv utorrent-server-v3_0 utorrent-server
 chmod +x $BUILD_DIR/utorrent-server/utserver
 echo "       done."
 
-if [[ $BUILDPACK_URL ]]; then
+if [[ $ADDITIONAL_BUILDPACK_URL ]]; then
   echo "-----> Initiating Requested Buildpack... "
   REQ_BUILDPACK_DIR=$(mktemp -d -t rbd.XXXXXX)
   git clone --quiet $ADDITIONAL_BUILDPACK_URL $REQ_BUILDPACK_DIR
