@@ -24,7 +24,7 @@ source $BUILD_DIR/_utorrent.cfg
 LP_DIR=`cd $(dirname $0); cd ..; pwd`
 
 cd $BUILD_DIR
-echo -n "-----> Downloading µTorrent..."
+echo -n "-----> Downloading uTorrent..."
 curl --silent --location https://download.utorrent.com/linux/utorrent-server-3.0-ubuntu-10.10-27079.tar.gz | tar xz
 mv utorrent-server-v3_0 utorrent-server
 echo "       done."
