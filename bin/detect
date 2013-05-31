@@ -2,7 +2,7 @@
 # bin/detect <build-dir>
 
 if [ -f $1/_utorrent.cfg ]; then
-  echo "uTorrent" && exit 0
+  echo "µTorrent" && exit 0
 else
   echo "no" && exit 1
 fi
