@@ -7,12 +7,16 @@ set -e
 # clean up leaking environment
 unset GIT_DIR
 
-# parse args
-BUILD_DIR=$1
 
+BUILD_DIR=$1
+CACHE_DIR=$2
+ENV_DIR=$3
 # This is where the buildpack is stored
 BUILDPACK_DIR=`cd $(dirname $0); cd ..; pwd`
+
 source $BUILDPACK_DIR/bin/util
+
+export_env_dir ${ENV_DIR}
 
 echo "Installing the dependencies"
 apt_install libssl0.9.8
