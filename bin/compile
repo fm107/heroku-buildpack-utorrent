@@ -18,12 +18,12 @@ source $BUILDPACK_DIR/bin/util
 
 export_env_dir ${ENV_DIR}
 
-echo "Installing the dependencies"
-apt_install libssl0.9.8
-
 cd $BUILD_DIR
 echo -n "-----> Downloading uTorrent..."
 curl --silent --location http://download.ap.bittorrent.com/track/beta/endpoint/utserver/os/linux-x64-ubuntu-13-04 | tar xz
 mv utorrent-server-alpha-v3_3 utorrent-server
 chmod +x $BUILD_DIR/utorrent-server/utserver
 echo "       done."
+
+echo "Installing the dependencies"
+apt_install libssl0.9.8
