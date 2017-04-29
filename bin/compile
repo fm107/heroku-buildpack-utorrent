@@ -10,7 +10,8 @@ unset GIT_DIR
 # parse args
 BUILD_DIR=$1
 
-
+# This is where the buildpack is stored
+BUILDPACK_DIR=`cd $(dirname $0); cd ..; pwd`
 source $BUILDPACK_DIR/bin/util
 
 echo "Installing the dependencies"
