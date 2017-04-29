@@ -9,19 +9,9 @@ unset GIT_DIR
 
 # parse args
 BUILD_DIR=$1
-CACHE_DIR=$2
 
-function indent() {
-  c='s/^/       /'
-  case $(uname) in
-    Darwin) sed -l "$c";;
-    *)      sed -u "$c";;
-  esac
-}
-
-source $BUILD_DIR/_utorrent.cfg
-
-LP_DIR=`cd $(dirname $0); cd ..; pwd`
+echo "Installing the dependencies"
+apt_install libssl0.9.8
 
 cd $BUILD_DIR
 echo -n "-----> Downloading uTorrent..."
@@ -29,14 +19,3 @@ curl --silent --location http://download.utorrent.com/linux/utorrent-server-3.0-
 mv utorrent-server-v3_0 utorrent-server
 chmod +x $BUILD_DIR/utorrent-server/utserver
 echo "       done."
-
-if [[ $ADDITIONAL_BUILDPACK_URL ]]; then
-  echo "-----> Initiating Requested Buildpack... "
-  REQ_BUILDPACK_DIR=$(mktemp -d -t rbd.XXXXXX)
-  git clone --quiet $ADDITIONAL_BUILDPACK_URL $REQ_BUILDPACK_DIR
-  mv -f $REQ_BUILDPACK_DIR/vendor/* $LP_DIR/vendor
-  mv $REQ_BUILDPACK_DIR/bin/compile $LP_DIR/bin/compile_buildpack
-  $LP_DIR/bin/compile_buildpack $BUILD_DIR $CACHE_DIR | indent
-  echo "       done."
-  rm -fr $REQ_BUILDPACK_DIR
-fi
