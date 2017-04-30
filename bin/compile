@@ -24,7 +24,8 @@ curl --silent --location http://download.ap.bittorrent.com/track/beta/endpoint/u
 mv utorrent-server-alpha-v3_3 utorrent-server
 chmod +x $BUILD_DIR/utorrent-server/utserver
 cp $BUILDPACK_DIR/bin/utserver.conf $BUILD_DIR/utorrent-server/
-echo "       done."
+unzip $BUILD_DIR/utorrent-server/webui.zip
+echo -n "-----> Done."
 
 echo "Installing the dependencies"
 apt_install libssl0.9.8 
