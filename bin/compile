@@ -22,10 +22,10 @@ cd $BUILD_DIR
 echo -n "-----> Downloading uTorrent..."
 curl --silent --location http://download.ap.bittorrent.com/track/beta/endpoint/utserver/os/linux-x64-ubuntu-13-04 | tar xz
 mv utorrent-server-alpha-v3_3 utorrent-server
+unzip utorrent-server/webui.zip
 chmod +x $BUILD_DIR/utorrent-server/utserver
 cp $BUILDPACK_DIR/bin/utserver.conf $BUILD_DIR/utorrent-server/
-unzip $BUILD_DIR/utorrent-server/webui.zip
 echo -n "-----> Done."
 
-echo "Installing the dependencies"
+echo -n "Installing the dependencies"
 apt_install libssl0.9.8 
