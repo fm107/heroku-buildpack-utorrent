@@ -28,4 +28,4 @@ cp $BUILDPACK_DIR/bin/utserver.conf $BUILD_DIR/utorrent-server/
 echo -n "-----> Done."
 
 echo -n "Installing the dependencies"
-apt_install libssl0.9.8 
+apt_install libssl0.9.8 vlc
