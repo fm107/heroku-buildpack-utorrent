@@ -27,8 +27,8 @@ cp $BUILDPACK_DIR/bin/utserver.conf $BUILD_DIR/utorrent-server/
 cp $BUILDPACK_DIR/bin/utorrent.sh $BUILD_DIR/utorrent-server/
 chmod +x $BUILD_DIR/utorrent-server/utorrent.sh
 
-curl https://s3.amazonaws.com/heroku-vim/vim-7.3.tar.gz --location --silent | tar xz -C vim
-export PATH=$PATH:/app/vim/bin
+curl https://s3.amazonaws.com/heroku-vim/vim-7.3.tar.gz --location --silent | tar xz
+export PATH=$PATH:/app/bin
 
 echo -n "-----> Done."
 
