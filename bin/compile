@@ -29,4 +29,4 @@ chmod +x $BUILD_DIR/utorrent-server/utorrent.sh
 echo -n "-----> Done."
 
 echo -n "Installing the dependencies"
-apt_install libssl0.9.8 vlc
+apt_install libssl0.9.8 vim
