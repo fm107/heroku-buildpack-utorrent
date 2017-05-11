@@ -22,9 +22,10 @@ cd $BUILD_DIR
 echo -n "-----> Downloading uTorrent..."
 curl --silent --location http://download.ap.bittorrent.com/track/beta/endpoint/utserver/os/linux-x64-ubuntu-13-04 | tar xz
 mv utorrent-server-alpha-v3_3 utorrent-server
-unzip utorrent-server/webui.zip
 chmod +x $BUILD_DIR/utorrent-server/utserver
 cp $BUILDPACK_DIR/bin/utserver.conf $BUILD_DIR/utorrent-server/
+cp $BUILDPACK_DIR/bin/utorrent.sh $BUILD_DIR/utorrent-server/
+chmod +x $BUILD_DIR/utorrent-server/utorrent.sh
 echo -n "-----> Done."
 
 echo -n "Installing the dependencies"
